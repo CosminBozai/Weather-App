@@ -9,14 +9,19 @@ async function getGeoLocation(location) {
   return responseData;
 }
 
-const Temperature = async function getWeather(location) {
+async function getWeatherData(location) {
   let geoLocation = await getGeoLocation(location);
   let response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${geoLocation[0].lat}&lon=${geoLocation[0].lon}&units=metric&appid=${APIKey}`
   );
-  let unpocessedData = await response.json();
-  let temp = unpocessedData.main.temp;
-  return temp;
-};
-
-console.log(Temperature("sheffield"));
+  let unprocessedData = await response.json();
+  //   console.log(unprocessedData);
+  let weatherData = {
+    weather: unprocessedData.weather[0].main,
+    temp: unprocessedData.main.temp,
+    feelsLike: unprocessedData.main.feels_like,
+    humidity: unprocessedData.main.humidity,
+    windSpeed: unprocessedData.wind.speed,
+  };
+  console.log(weatherData);
+}
