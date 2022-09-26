@@ -1,0 +1,37 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather App project from the Odin Project",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,jsx"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CosminBozai/Weather-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CosminBozai/Weather-App/issues"
+  },
+  "homepage": "https://github.com/CosminBozai/Weather-App#readme",
+  "devDependencies": {
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "npm-watch": "^0.11.0"
+  }
+}
