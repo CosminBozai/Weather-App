@@ -3,7 +3,7 @@ const Weather = () => {
   const APIKey = "a7bd0b44b3f09e778ab9d3192bcc0217";
 
   const geoLocation = (async function getGeoLocation() {
-    let location = document.getElementById("location-input").value;
+    let location = "sheffield";
     try {
       let response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${APIKey}`,
@@ -22,7 +22,6 @@ const Weather = () => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${coord[0].lat}&lon=${coord[0].lon}&units=metric&appid=${APIKey}`
     );
     let unprocessedData = await response.json();
-    console.log(unprocessedData);
     let weatherData = {
       locationName: unprocessedData.name,
       weather: unprocessedData.weather[0].main,
@@ -32,6 +31,7 @@ const Weather = () => {
       windSpeed: unprocessedData.wind.speed,
     };
     displayWeather(weatherData);
+    changeBackground(weatherData.weather);
   })();
 
   function displayWeather(data) {
@@ -49,13 +49,63 @@ const Weather = () => {
     windSpeedDisplay.textContent = data.windSpeed + "km/h";
   }
 
+  function changeBackground(data) {
+    let mainElement = document.querySelector("main");
+    mainElement.className = "";
+    switch (data) {
+      case "Clear":
+        mainElement.className = "clear";
+        break;
+      case "Clouds":
+        mainElement.className = "clouds";
+        break;
+      case "Rain":
+        mainElement.className = "rain";
+        break;
+    }
+  }
+
   (async function getForecast() {
     let coord = await geoLocation;
     let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${coord[0].lat}&lon=${coord[0].lon}&appid=${APIKey}`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${coord[0].lat}&lon=${coord[0].lon}&units=metric&&appid=${APIKey}`
     );
     let unprocessedData = await response.json();
+    console.log(unprocessedData);
+    forecastData = [...unprocessedData.list];
+    console.log(forecastData);
+    displayForecast(forecastData);
   })();
+
+  function displayForecast(data) {
+    const forecastSection = document.querySelector("#forecast");
+    data.forEach((index) => {
+      let forecastInfo = document.createElement("div");
+      forecastInfo.className = "forecast-info";
+      let forecastDay = document.createElement("p");
+      forecastDay.className = "forecast-day";
+      forecastDay.textContent = index.dt_txt;
+      let infoBody = document.createElement("div");
+      infoBody.className = "forecast-info-body";
+      let wrapper = document.createElement("div");
+      wrapper.className = "wrapper";
+      let forecastTime = document.createElement("p");
+      forecastTime.textContent = index.dt_txt;
+      let forecastWeather = document.createElement("p");
+      forecastWeather.textContent = index.weather[0].main;
+      let forecastTemp = document.createElement("p");
+      forecastTemp.className = "forecast-temp";
+      forecastTemp.textContent = index.main.temp;
+
+      forecastInfo.appendChild(forecastDay);
+      wrapper.appendChild(forecastTime);
+      wrapper.appendChild(forecastWeather);
+      infoBody.appendChild(wrapper);
+      infoBody.appendChild(forecastTemp);
+      forecastInfo.appendChild(infoBody);
+      forecastSection.appendChild(forecastInfo);
+    });
+  }
 };
 
 submitLocationBtn.addEventListener("click", Weather);
