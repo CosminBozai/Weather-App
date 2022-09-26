@@ -12,7 +12,6 @@
 }
 
 main {
-  /* background-image: url(backgorunds/cloudy.jpg); */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -21,6 +20,19 @@ main {
   height: 50vh;
   background-color: rgb(86, 176, 255);
 }
+
+/* Backgrounds that depend on the weather shown */
+.clear {
+  background-image: url(backgrounds/clearsky.jpg);
+}
+.clouds {
+  background-image: url(backgrounds/cloudy.jpg);
+}
+.rain {
+  background-image: url(backgrounds/rainy.jpg);
+}
+
+/**/
 
 h1,
 #weather,
@@ -79,4 +91,29 @@ form {
 
 #submit-location img {
   height: 70%;
+}
+
+/* Forecast section  */
+.forecast-info {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.2rem 1rem;
+  border: 1px solid black;
+}
+
+.forecast-day {
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.forecast-info-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.forecast-temp {
+  font-size: 2.3rem;
 }
