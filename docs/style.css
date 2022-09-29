@@ -31,6 +31,9 @@ main {
 .rain {
   background-image: url(backgrounds/rainy.jpg);
 }
+.haze {
+  background-image: url(backgrounds/haze.jpg);
+}
 
 /**/
 

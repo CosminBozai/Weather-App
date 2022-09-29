@@ -65,6 +65,9 @@ const Weather = () => {
       case "Rain":
         mainElement.className = "rain";
         break;
+      case "Haze":
+        mainElement.className = "haze";
+        break;
     }
   }
 
