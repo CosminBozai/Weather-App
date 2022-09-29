@@ -5,7 +5,7 @@ const Weather = () => {
   const APIKey = "a7bd0b44b3f09e778ab9d3192bcc0217";
 
   const geoLocation = (async function getGeoLocation() {
-    let location = "sheffield";
+    let location = document.getElementById("location-input").value;
     try {
       let response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${APIKey}`,
