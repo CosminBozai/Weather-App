@@ -6,6 +6,7 @@ const Weather = () => {
 
   const geoLocation = (async function getGeoLocation() {
     let location = document.getElementById("location-input").value;
+    location === "" ? alert("Input valid location") : true;
     try {
       let response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${APIKey}`,
