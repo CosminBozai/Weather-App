@@ -98,14 +98,14 @@ form {
 
 /* Forecast section  */
 #forecast-header {
-  margin: 14px 0;
+  margin: 14px 10px;
   font-weight: 600;
 }
 
 section#forecast {
   display: flex;
   overflow: scroll;
-  padding: 10px 0;
+  padding: 10px 10px;
 }
 
 .forecast-info {
