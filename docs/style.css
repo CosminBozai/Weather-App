@@ -97,9 +97,15 @@ form {
 }
 
 /* Forecast section  */
+#forecast-header {
+  margin: 14px 0;
+  font-weight: 600;
+}
+
 section#forecast {
   display: flex;
   overflow: scroll;
+  padding: 10px 0;
 }
 
 .forecast-info {
