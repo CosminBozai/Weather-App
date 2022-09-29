@@ -17,7 +17,7 @@ main {
   position: relative;
   padding: 1rem;
   width: 100vw;
-  height: 50vh;
+  height: max(350px, 50vh);
   background-color: rgb(86, 176, 255);
 }
 
